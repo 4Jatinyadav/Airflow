@@ -1,0 +1,76 @@
+1)Download  and install virtual Box
+https://www.virtualbox.org/wiki/Downloads 
+
+2)download and install(2.3 GB) virtual machine 
+https://marclamberti.wetransfer.com/downloads/b1057cf63e657b355cdf4eae70e65e6620210113125028/663de9
+
+click import  and start ,u will get login interface
+means VM is ready,hit localhost:8080 in your browser to test it
+
+
+3)Access the VM in SSH and connect Visual Studio Code through it.
+Open Visual Studio Code:
+i)Extension-->"remote ssh" and Install it
+ii)Once the plugin is installed, open it by hitting
+- Cmd-P (on Mac)
+- F1 (on Windows)
+and type >remote-ssh
+Then hit enter, and select "Add New SSH host..."
+
+iii)Enter the following command
+ssh -p 2222 airflow@localhost
+and hit enter.
+Password is also airflow
+
+
+Select the first proposition for the SSH config file
+You should see this message box on the bottom right of VSCode:
+Now the
+
+
+
+iv)Now the connection has been added, open the plugin again
+- Cmd-P (on Mac)
+- F1 (on Windows)
+and type >remote-ssh
+Then choose "localhost" by hitting enter.
+A new Visual Studio Code window opens, type the password airflow
+
+
+And YOU ARE CONNECTED
+
+
+4)Open new terminal and copy paste this one by one
+
+python3 -m venv sandbox
+source sandbox/bin/activate
+
+
+pip install apache-airflow==2.1.0 --constraint https://gist.githubusercontent.com/marclamberti/742efaef5b2d94f44666b0aec020be7c/raw/
+21c88601337250b6fd93f1adceb55282fb07b7ed/constraint.txt
+
+CREATE USER:paste below text
+
+airflow users create -u admin -p admin -f Jatin -l yadav -r Admin -e erjatinyadav@gmail.com
+
+Initialize the Metastore DB:paste below text
+airflow db init
+
+
+Start the Web Server:paste below text
+airflow webserver --port 8080
+
+
+
+
+open new terminal:
+
+Start the Scheduler:paste below text
+airflow scheduler
+
+
+
+
+
+
+
